@@ -1,0 +1,25 @@
+
+NOTA: Las clases involucradas en la emisiòn del Certificado son las siguientes:
+
+	C:\Desarrollo\ANT.OnLine\ANT.OnLine\SegurosANS\Reportes\Certificado.xsl
+
+	C:\Desarrollo\ANT.OnLine\ANT.OnLine\Consulta\ConsultaCertificadoAP.aspx.cs
+
+		private void mapear()
+		{
+			//Código: JC002
+			ClearCampos();
+
+			Busqueda = new Entidades.ConsultaCertificadoAP();
+			Busqueda.FechaDesde = idInicio.Date;
+			Busqueda.FechaHasta = idHasta.Date.AddHours(23).AddMinutes(59);
+			Busqueda.RutAsegurado = txtRutAsegurado.Text;
+			Busqueda.Poliza = txtpoliza.Text;
+			Busqueda.Certificado = txtCertificado.Text;
+			Busqueda.CompaniaID = (int)Negocio.eeCompania.eChilena;      <<<<<< modificar aquí, extraer código desde una combo box
+			//Ini - RG009
+			Negocio.Usuario oUsuario = new Negocio.Usuario();
+			oUsuario = (Negocio.Usuario)Session["UsuarioSeg"];
+			Busqueda.oUsuario = oUsuario.UsuarioENT.CorredorId;
+			//Fin - RG009
+		}
